@@ -18,16 +18,15 @@
 <!--   <h3 align="center"><a href="https://openaccess.thecvf.com/content/WACV2024/papers/Khan_Spectroformer_Multi-Domain_Query_Cascaded_Transformer_Network_for_Underwater_Image_Enhancement_WACV_2024_paper.pdf">Paper</h3> -->
   <div align="center"></div>
 </p>
-<p align="center">
-  <a href="">
-    <img src="tsne_visuals.png" alt="Logo" width="100%">
-    <h1 align=""> t-SNE visualization of the Amplitude and Phase of clean
-and degraded images. The separate clusters for clean and degraded
-amplitude show that there is more effect of degradation on ampli-
-tude content as compared to phase content which has overlapping
-clusters for clean and noisy images</h1>
-  </a>
-</p>
+<div align="center">
+    <img src="tsne_visuals.png" alt="t-SNE Visualization" width="100%">
+    <h1>t-SNE Visualization of the Amplitude and Phase of Clean and Degraded Images</h1>
+    <p>
+        The separate clusters for clean and degraded amplitude show that there is more effect of degradation 
+        on amplitude content compared to phase content, which has overlapping clusters for clean and noisy images.
+    </p>
+</div>
+
 
 
 

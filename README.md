@@ -16,6 +16,13 @@
   </p>
   <h3 align="center">WACV-2025</h3>
 <!--   <h3 align="center"><a href="https://openaccess.thecvf.com/content/WACV2024/papers/Khan_Spectroformer_Multi-Domain_Query_Cascaded_Transformer_Network_for_Underwater_Image_Enhancement_WACV_2024_paper.pdf">Paper</h3> -->
+ <div align="center"></div>
+</p>
+<div align="center">
+    <img src="last_model.png" alt="Phaseformer : Phase-based Attention Mechanism for Underwater Image Restoration and Beyond" width="100%">
+  
+</div>
+  
   <div align="center"></div>
 </p>
 <div align="center">

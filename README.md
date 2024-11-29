@@ -44,7 +44,7 @@ To evaluate the model on different datasets using the provided checkpoints and s
 │   ├── SQUID
 │   ├── UCCS
 │   ├── UFO-120
-│   ├──Low_light
+│   ├── Low_light
 ├── checkpoints
 │   ├── UIEB
 │   ├── UFO-120

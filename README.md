@@ -20,7 +20,7 @@
 </p>
 <div align="center">
     <img src="last_model.png" alt="Phaseformer : Phase-based Attention Mechanism for Underwater Image Restoration and Beyond" width="100%">
-  
+    <h1>Phaseformer : Phase-based Attention Mechanism for Underwater Image Restoration and Beyond</h1>
 </div>
   
   <div align="center"></div>

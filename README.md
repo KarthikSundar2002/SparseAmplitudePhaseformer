@@ -20,7 +20,7 @@
 </p>
 <p align="center">
   <a href="">
-    <img src="tsn-diagram.jpg" alt="Logo" width="100%">
+    <img src="tsne_visuals.png" alt="Logo" width="100%">
   </a>
 </p>
 

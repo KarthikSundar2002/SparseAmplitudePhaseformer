@@ -21,7 +21,7 @@
 <p align="center">
   <a href="">
     <img src="tsne_visuals.png" alt="Logo" width="100%">
-    <h1 align="center"> t-SNE visualization of the Amplitude and Phase of clean
+    <h1 align=""> t-SNE visualization of the Amplitude and Phase of clean
 and degraded images. The separate clusters for clean and degraded
 amplitude show that there is more effect of degradation on ampli-
 tude content as compared to phase content which has overlapping

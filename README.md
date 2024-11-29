@@ -20,7 +20,7 @@
 </p>
 <p align="center">
   <a href="">
-    <img src="Spectroformer.jpg" alt="Logo" width="100%">
+    <img src="last_model.png" alt="Logo" width="100%">
   </a>
 </p>
 

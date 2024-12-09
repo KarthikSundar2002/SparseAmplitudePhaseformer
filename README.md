@@ -110,6 +110,7 @@ python test.py --dataset dataset/UCCS/ --checkpoints_path /checkpoints/Low_light
 
 ## Traing
 1. Structure of data for training should be like
+2. uw_data can any underwater datsets folder like UIEB,UFO-120 etc.
  ```Shell
  uw_data/
     ├── train/

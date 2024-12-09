@@ -126,5 +126,16 @@ python test.py --dataset dataset/UCCS/ --checkpoints_path /checkpoints/Low_light
 ```
 
 
+## Citation
+If you find this work helpful, please reference it as follows:
+```
+ @article{khan2024phaseformer,
+  title={Phaseformer: Phase-based Attention Mechanism for Underwater Image Restoration and Beyond},
+  author={Khan, MD and Negi, Anshul and Kulkarni, Ashutosh and Phutke, Shruti S and Vipparthi, Santosh Kumar and Murala, Subrahmanyam},
+  journal={arXiv preprint arXiv:2412.01456},
+  year={2024}
+}
+'''
+
 ## Acknowledgements 
 Special thanks to the awesome repositories [UIPTA](https://github.com/Mdraqibkhan/UIEPTA) and [Spectroformer](https://github.com/Mdraqibkhan/Spectroformer), which made this project possible.

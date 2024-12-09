@@ -135,7 +135,11 @@ If you find this work helpful, please reference it as follows:
   journal={arXiv preprint arXiv:2412.01456},
   year={2024}
 }
-'''
+```
+
+
 
 ## Acknowledgements 
 Special thanks to the awesome repositories [UIPTA](https://github.com/Mdraqibkhan/UIEPTA) and [Spectroformer](https://github.com/Mdraqibkhan/Spectroformer), which made this project possible.
+
+

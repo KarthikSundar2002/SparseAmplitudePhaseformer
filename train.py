@@ -130,7 +130,7 @@ if opt.cuda:
 device = torch.device("cuda:0" if opt.cuda else "cpu")
 
 if opt.finetune:
-    G_path = './best_checkpoint/netG_model_best_psnr_21.8953_ssim_0.9967.pth'
+    G_path = 'Provide the path to the checkpoint you wish to continue from'
     net_g = torch.load(G_path).to(device)
 else:
     net_g = Restormer().to(device)
@@ -140,8 +140,8 @@ print(f'Trainable parameters: {count_parameters(net_g)}')
 print('===> Loading datasets')
 
 root_dirs_train = {
-    'input': [ './underwater_data/uw_data/train/a'],
-    'reference': [ './underwater_data/uw_data/train/b']
+    'input': [ './uw_data/train/a'],      
+    'reference': [ './uw_data/train/b']
 }
 
 dataset_train = get_dataset(root_dirs_train)
@@ -150,8 +150,8 @@ data_loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=1, shu
 print(len(data_loader_train ))
 
 root_dirs_test = {
-    'input': ['./underwater_data/uw_data/test/a'],
-    'reference': ['./underwater_data/uw_data/test/b']
+    'input': ['./uw_data/test/a'],
+    'reference': ['./uw_data/test/b']
 }
 dataset_test = get_dataset(root_dirs_test)
 

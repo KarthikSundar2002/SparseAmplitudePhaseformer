@@ -91,7 +91,7 @@ class CustomImageDataset(torch.utils.data.Dataset):
 
 
 # Data loading functions for multiple directories
-def get_dataset_train(arg,root_dirs):
+def get_dataset(root_dirs):
     """
     Args:
         root_dirs (dict): Dictionary containing dataset folder paths with 'input' and 'reference' keys.

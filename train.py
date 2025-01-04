@@ -91,7 +91,7 @@ class CustomImageDataset(torch.utils.data.Dataset):
 
 
 # Data loading functions for multiple directories
-def get_dataset(root_dirs):
+def get_dataset_train(arg,root_dirs):
     """
     Args:
         root_dirs (dict): Dictionary containing dataset folder paths with 'input' and 'reference' keys.
@@ -99,12 +99,12 @@ def get_dataset(root_dirs):
                                     'reference': ['/path/to/ref_data1', '/path/to/ref_data2']}
     """
     transform = transforms.Compose([
-        transforms.Resize((256, 384)),
+        transforms.Resize((256, 256)),
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
     transformH = transforms.Compose([
-        transforms.Resize((256*2, 384*2)),
+        transforms.Resize((256*2, 256*2)),
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
@@ -144,7 +144,7 @@ root_dirs_train = {
     'reference': [ './uw_data/train/b']
 }
 
-dataset_train = get_dataset(root_dirs_train)
+dataset_train = get_dataset_train(root_dirs_train)
 
 data_loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=1, shuffle=True)
 print(len(data_loader_train ))
@@ -153,7 +153,7 @@ root_dirs_test = {
     'input': ['./uw_data/test/a'],
     'reference': ['./uw_data/test/b']
 }
-dataset_test = get_dataset(root_dirs_test)
+dataset_test = get_dataset_test(root_dirs_test)
 
 data_loader_test = torch.utils.data.DataLoader(dataset_test, batch_size=1, shuffle=True)
 

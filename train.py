@@ -144,7 +144,7 @@ root_dirs_train = {
     'reference': [ './uw_data/train/b']
 }
 
-dataset_train = get_dataset_train(root_dirs_train)
+dataset_train = get_dataset(root_dirs_train)
 
 data_loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=1, shuffle=True)
 print(len(data_loader_train ))
@@ -153,7 +153,7 @@ root_dirs_test = {
     'input': ['./uw_data/test/a'],
     'reference': ['./uw_data/test/b']
 }
-dataset_test = get_dataset_test(root_dirs_test)
+dataset_test = get_dataset(root_dirs_test)
 
 data_loader_test = torch.utils.data.DataLoader(dataset_test, batch_size=1, shuffle=True)
 

@@ -247,7 +247,7 @@ for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
         optimizer_g.step()
 
         if iteration % 100 == 0:
-            out_image = torch.cat((rgb, fake_b1, tarH), 3)
+            out_image = torch.cat((rgb, fake_b, tarL), 3)
             save_img(out_image[0].detach().cpu(), f'{output_dir_train}/{iteration}.png')
             print(f"===> Epoch[{epoch}]({iteration}/{len(data_loader_train)}): Loss_G: {loss_g.item()}")
 
@@ -264,8 +264,8 @@ for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
 
     for test_iter, batch in enumerate(data_loader_test, 1):
         rgb_input, target, targetH, idx = batch[0].to(device), batch[1].to(device), batch[2].to(device), batch[3]
-        prediction = net_g(rgb_input)[-1]
-        out = torch.cat((rgb_input, prediction, targetH), 3)
+        prediction = net_g(rgb_input)[0]
+        out = torch.cat((rgb_input, prediction, target), 3)
        
         filename = f'{output_dir}/{idx[0]}.png'  # Append the .png extension
         save_img(out[0].detach().cpu(), filename)

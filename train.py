@@ -17,6 +17,9 @@ from network1 import define_G, define_D, GANLoss, get_scheduler, update_learning
 from model_with_eca import Restormer
 import kornia
 
+from focal_frequency_loss import FocalFrequencyLoss as FFL
+
+
 
 # Training settings
 parser = argparse.ArgumentParser(description='Phaseformer')
@@ -212,11 +215,11 @@ class WeightedLoss(nn.Module):
 
 
 # Define dynmaic weights for losses
-N=4 #number of losses
+N=5 #number of losses
 Weighted_Loss4 = WeightedLoss(N).to(device)  
 Weighted_Loss2= WeightedLoss(2).to(device)
 
-
+ffl = FFL().to(device)
 # Define losses
 Gradient_Loss = Gradient_Loss().to(device)
 L_per = VGGPerceptualLoss().to(device)
@@ -239,8 +242,8 @@ for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
         fake_b,fake_b1 = net_g(rgb)
         optimizer_g.zero_grad()
 
-        loss_g_L= Weighted_Loss4(Charbonnier_loss(tarL,fake_b),L_per(fake_b,tarL), Gradient_Loss(fake_b,tarL),MS_SSIM_loss(fake_b,tarL))
-        loss_g_H= Weighted_Loss4(Charbonnier_loss(tarH,fake_b1),L_per(fake_b1,tarH), Gradient_Loss(fake_b1,tarH),MS_SSIM_loss(fake_b1,tarH))
+        loss_g_L= Weighted_Loss4(Charbonnier_loss(tarL,fake_b),L_per(fake_b,tarL), Gradient_Loss(fake_b,tarL),MS_SSIM_loss(fake_b,tarL),ffl(fake_b,tarL))
+        loss_g_H= Weighted_Loss4(Charbonnier_loss(tarH,fake_b1),L_per(fake_b1,tarH), Gradient_Loss(fake_b1,tarH),MS_SSIM_loss(fake_b1,tarH),ffl(fake_b1,tarH))
         loss_g =  Weighted_Loss2(loss_g_L,loss_g_H)
         
         loss_g.backward()

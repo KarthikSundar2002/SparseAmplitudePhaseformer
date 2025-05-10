@@ -2,6 +2,7 @@ from __future__ import print_function
 import argparse
 import os
 from math import log10
+import time
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -43,7 +44,7 @@ opt = parser.parse_args()
 print(opt)
 
 
-
+root_dir = './'
 
 # Custom dataset class to load images from multiple directories
 class CustomImageDataset(torch.utils.data.Dataset):
@@ -143,8 +144,8 @@ print(f'Trainable parameters: {count_parameters(net_g)}')
 print('===> Loading datasets')
 
 root_dirs_train = {
-    'input': [ './uw_data/train/a'],      
-    'reference': [ './uw_data/train/b']
+    'input': [ root_dir + 'uw_data/train/a'],      
+    'reference': [ root_dir + 'uw_data/train/b']
 }
 
 dataset_train = get_dataset(root_dirs_train)
@@ -153,8 +154,8 @@ data_loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=1, shu
 print(len(data_loader_train ))
 
 root_dirs_test = {
-    'input': ['./uw_data/test/a'],
-    'reference': ['./uw_data/test/b']
+    'input': [root_dir + 'uw_data/test/a'],
+    'reference': [root_dir + 'uw_data/test/b']
 }
 dataset_test = get_dataset(root_dirs_test)
 
@@ -232,11 +233,12 @@ Charbonnier_loss = nn.SmoothL1Loss().to(device)
 optimizer_g = optim.Adam(net_g.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
 net_g_scheduler = get_scheduler(optimizer_g, opt)
 
-output_dir_train = './images_train'
+output_dir_train = root_dir + 'images_train'
 if not os.path.exists(output_dir_train):
     os.makedirs(output_dir_train)
 for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
     net_g.train()
+    time_start = time.time()
     for iteration, batch in enumerate(data_loader_train , 1):
         rgb, tarL,tarH,indx = batch[0].to(device), batch[1].to(device), batch[2].to(device), batch[3]
         fake_b,fake_b1 = net_g(rgb)
@@ -249,16 +251,18 @@ for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
         loss_g.backward()
         optimizer_g.step()
 
-        if iteration % 100 == 0:
-            out_image = torch.cat((rgb, fake_b, tarL), 3)
-            save_img(out_image[0].detach().cpu(), f'{output_dir_train}/{iteration}.png')
-            print(f"===> Epoch[{epoch}]({iteration}/{len(data_loader_train)}): Loss_G: {loss_g.item()}")
 
+        if iteration % 100 == 0:
+            #out_image = torch.cat((rgb, fake_b, tarL), 3)
+            #save_img(out_image[0].detach().cpu(), f'{output_dir_train}/{iteration}.png')
+            print(f"===> Epoch[{epoch}]({iteration}/{len(data_loader_train)}): Loss_G: {loss_g.item()}")
+    time_end = time.time()
+    print(f"Time taken for epoch {epoch}: {time_end - time_start} seconds")
     update_learning_rate(net_g_scheduler, optimizer_g)
 
 
     # Ensure output directory exists
-    output_dir = './images_test'
+    output_dir = root_dir + 'images_test'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -273,11 +277,11 @@ for epoch in range(opt.epoch_count, opt.niter + opt.niter_decay + 1):
         filename = f'{output_dir}/{idx[0]}.png'  # Append the .png extension
         save_img(out[0].detach().cpu(), filename)
 
-    net_g_model_out_path = f"checkpoint/{opt.dataset}/netG_model_epoch_{epoch}_psnr_{avg_psnr:.4f}.pth"
-    if not os.path.exists("checkpoint"):
-        os.mkdir("checkpoint")
-    if not os.path.exists(os.path.join("checkpoint", opt.dataset)):
-        os.mkdir(os.path.join("checkpoint", opt.dataset))
+    net_g_model_out_path = f"{root_dir}/checkpoint/{opt.dataset}/netG_model_epoch_{epoch}_psnr_{avg_psnr:.4f}.pth"
+    if not os.path.exists(root_dir + "checkpoint"):
+        os.mkdir(root_dir + "checkpoint")
+    if not os.path.exists(os.path.join(root_dir + "checkpoint", opt.dataset)):
+        os.mkdir(os.path.join(root_dir + "checkpoint", opt.dataset))
     torch.save(net_g, net_g_model_out_path)
     print(f"Checkpoint saved at {net_g_model_out_path}")
 
